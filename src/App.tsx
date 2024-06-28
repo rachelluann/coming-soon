@@ -2,9 +2,7 @@ import { useState } from "react";
 import { CheckCircleIcon } from "@heroicons/react/20/solid";
 
 export default function App() {
-  const [form, setForm] = useState({
-    email: "",
-  });
+  const [form, setForm] = useState({ email: "" });
   const [signedUp, setSignedUp] = useState(false);
 
   const handleSubmit = (e) => {
@@ -12,8 +10,7 @@ export default function App() {
     setSignedUp(true);
   };
 
-  const handleChange = (e) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   return (
     <main className="isolate">
@@ -39,8 +36,7 @@ export default function App() {
                 Coming Soon
               </p>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                We're working on something new and exciting. We can't wait to
-                share it with you. It's going to blow your mind!
+                We're working on something new and exciting. We can't wait to share it with you. It's going to blow your mind!
               </p>
             </div>
           </div>
@@ -52,15 +48,10 @@ export default function App() {
               <div className="rounded-md bg-green-50 p-4">
                 <div className="flex">
                   <div className="flex-shrink-0">
-                    <CheckCircleIcon
-                      className="h-5 w-5 text-green-400"
-                      aria-hidden="true"
-                    />
+                    <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
                   </div>
                   <div className="ml-3">
-                    <h3 className="text-sm font-medium text-green-800">
-                      You're on the waitlist! 🥳
-                    </h3>
+                    <h3 className="text-sm font-medium text-green-800">You're on the waitlist! 🥳</h3>
                     <div className="mt-2 text-sm text-green-700">
                       <p>We'll let you know when we're ready to launch.</p>
                     </div>
@@ -81,9 +72,7 @@ export default function App() {
                   name="waitlist"
                   className="mx-auto mt-10 flex max-w-md gap-x-4"
                 >
-                  <label htmlFor="email-address" className="sr-only">
-                    Email address
-                  </label>
+                  <label htmlFor="email-address" className="sr-only">Email address</label>
                   <input
                     id="email-address"
                     name="email"
