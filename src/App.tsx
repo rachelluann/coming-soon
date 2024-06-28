@@ -53,14 +53,15 @@ export default function App() {
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl lg:text-center">
               <h2 className="text-lg font-semibold leading-8 tracking-tight text-yellow-600">
-                ✨ New Product Alert! ✨
+                ✨ ylfe.net ✨
               </h2>
               <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                 Coming Soon
               </p>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                We're working on something new and exciting. We can't wait to
-                share it with you. It's going to blow your mind!
+                Fairy Stories for the modern era:  Dive into our serialized, 
+                web original fiction and rediscover the timeless magic of 
+                storytelling in a contemporary format.
               </p>
             </div>
           </div>
