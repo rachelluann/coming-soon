@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import { CheckCircleIcon } from "@heroicons/react/20/solid";
 
 export default function App() {
@@ -8,32 +7,12 @@ export default function App() {
   });
   const [signedUp, setSignedUp] = useState(false);
 
-  const encode = (data: { [key: string]: string }) => {
-    return Object.keys(data)
-      .map(
-        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]),
-      )
-      .join("&");
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    try {
-      const response = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encode({ "form-name": "waitlist", ...form }),
-      });
-      if (response.ok) {
-        setSignedUp(true);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    setSignedUp(true);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+  const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
   return (
@@ -89,9 +68,7 @@ export default function App() {
                 </div>
               </div>
             ) : (
-
-
-<div className="relative isolate overflow-hidden bg-neutral-800 px-6 py-24 shadow-2xl sm:rounded-3xl sm:px-24 xl:py-32">
+              <div className="relative isolate overflow-hidden bg-neutral-800 px-6 py-24 shadow-2xl sm:rounded-3xl sm:px-24 xl:py-32">
                 <h2 className="mx-auto max-w-2xl text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
                   Stay in the loop
                 </h2>
@@ -100,6 +77,8 @@ export default function App() {
                 </p>
                 <form
                   onSubmit={handleSubmit}
+                  data-netlify="true"
+                  name="waitlist"
                   className="mx-auto mt-10 flex max-w-md gap-x-4"
                 >
                   <label htmlFor="email-address" className="sr-only">
@@ -122,9 +101,7 @@ export default function App() {
                   >
                     Notify me
                   </button>
-         
-
-                  
+                  <input type="hidden" name="form-name" value="waitlist" />
                   <svg
                     className="pointer-events-none absolute right-0 h-48 w-48 -translate-y-3/4 select-none opacity-20 sm:h-96 sm:w-96 sm:-translate-y-1/2"
                     viewBox="0 0 24 24"
