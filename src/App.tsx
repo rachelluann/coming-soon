@@ -59,10 +59,11 @@ export default function App() {
                 Coming Soon
               </p>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                Fairy Stories<sup><a href="https://www.excellence-in-literature.com/on-fairy-stories-by-tolkien/" target="_blank">1</a></sup> 
-                for the Modern Era Dive into our serialized web original fiction 
+                Fairy Stories<sup><a href="https://www.excellence-in-literature.com/on-fairy-stories-by-tolkien/" target="_blank">1 </a></sup> 
+                for the Modern Era<be>
+                  Dive into our serialized web original fiction 
                 and rediscover the timeless magic of storytelling in a 
-                contemporary format.
+                contemporary format.</br>
               </p>
             </div>
           </div>
