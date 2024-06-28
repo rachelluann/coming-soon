@@ -2,15 +2,38 @@ import { useState } from "react";
 import { CheckCircleIcon } from "@heroicons/react/20/solid";
 
 export default function App() {
-  const [form, setForm] = useState({ email: "" });
+  const [form, setForm] = useState({
+    email: "",
+  });
   const [signedUp, setSignedUp] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSignedUp(true);
+  const encode = (data: { [key: string]: string }) => {
+    return Object.keys(data)
+      .map(
+        (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]),
+      )
+      .join("&");
   };
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({ "form-name": "waitlist", ...form }),
+      });
+      if (response.ok) {
+        setSignedUp(true);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
 
   return (
     <main className="isolate">
@@ -36,7 +59,8 @@ export default function App() {
                 Coming Soon
               </p>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                We're working on something new and exciting. We can't wait to share it with you. It's going to blow your mind!
+                We're working on something new and exciting. We can't wait to
+                share it with you. It's going to blow your mind!
               </p>
             </div>
           </div>
@@ -48,10 +72,15 @@ export default function App() {
               <div className="rounded-md bg-green-50 p-4">
                 <div className="flex">
                   <div className="flex-shrink-0">
-                    <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
+                    <CheckCircleIcon
+                      className="h-5 w-5 text-green-400"
+                      aria-hidden="true"
+                    />
                   </div>
                   <div className="ml-3">
-                    <h3 className="text-sm font-medium text-green-800">You're on the waitlist! 🥳</h3>
+                    <h3 className="text-sm font-medium text-green-800">
+                      You're on the waitlist! 🥳
+                    </h3>
                     <div className="mt-2 text-sm text-green-700">
                       <p>We'll let you know when we're ready to launch.</p>
                     </div>
@@ -72,7 +101,10 @@ export default function App() {
                   name="waitlist"
                   className="mx-auto mt-10 flex max-w-md gap-x-4"
                 >
-                  <label htmlFor="email-address" className="sr-only">Email address</label>
+                  <input type="hidden" name="form-name" value="waitlist" />
+                  <label htmlFor="email-address" className="sr-only">
+                    Email address
+                  </label>
                   <input
                     id="email-address"
                     name="email"
@@ -90,7 +122,7 @@ export default function App() {
                   >
                     Notify me
                   </button>
-                  <input type="hidden" name="form-name" value="waitlist" />
+
                   <svg
                     className="pointer-events-none absolute right-0 h-48 w-48 -translate-y-3/4 select-none opacity-20 sm:h-96 sm:w-96 sm:-translate-y-1/2"
                     viewBox="0 0 24 24"
